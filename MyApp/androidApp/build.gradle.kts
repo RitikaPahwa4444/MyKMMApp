@@ -12,6 +12,13 @@ android {
         versionCode = 1
         versionName = "1.0"
     }
+    buildFeatures{
+        compose= true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion= "1.1.0"
+//        kotlinCompilerVersion= "1.5.30"
+    }
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false

@@ -3,14 +3,16 @@ package com.example.mykmmapp
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 @Serializable
-data class BookResponse(
-val books:List<BooksInfo>
+data class MovieResponse(
+    val page:Int,
+val movies:List<MoviesInfo>
 )
 @Serializable
-data class BooksInfo(
+data class MoviesInfo(
+    @SerialName("id")
+    val critics_pick:String,
 
-
-    val display_name: String,
-    val published_date_description:String,
-    val updated:String
+    val display_title: String,
+    val mpaa_rating:String,
+val imageURL:String
 )

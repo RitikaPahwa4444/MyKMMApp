@@ -6,10 +6,10 @@ import com.example.mykmmapp.httpClient
 import io.ktor.client.features.*
 import io.ktor.client.features.get
 import io.ktor.client.request.*
-import kotlin.text.get
 
-class BooksRepo {
-    suspend fun getBooksList():MovieResponse {
-        return getBooks()
+
+class MoviesRepo {
+    suspend fun getMoviesList():MovieResponse {
+        return getMovies()
     }
 }

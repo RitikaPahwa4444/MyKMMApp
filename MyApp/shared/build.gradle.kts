@@ -3,12 +3,12 @@ plugins {
     id("com.android.library")
     kotlin("plugin.serialization")
 }
-version="1.0"
-val ktorVersion="1.6.5"
-val napierVersion="2.4.0"
+version = "1.0"
+val ktorVersion = "1.6.5"
+val napierVersion = "2.4.0"
 kotlin {
     android()
-    
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -20,17 +20,17 @@ kotlin {
     }
 
     sourceSets {
-        val commonMain by getting{
-            dependencies{
-                implementation ("io.ktor:ktor-client-serialization:$ktorVersion")
-                implementation ("io.ktor:ktor-client-logging:$ktorVersion")
-                implementation ("io.github.aakira:napier:$napierVersion")
+        val commonMain by getting {
+            dependencies {
+                implementation("io.ktor:ktor-client-serialization:$ktorVersion")
+                implementation("io.ktor:ktor-client-logging:$ktorVersion")
+                implementation("io.github.aakira:napier:$napierVersion")
             }
         }
 
-        val androidMain by getting{
-            dependencies{
-                implementation ("io.ktor:ktor-client-android:$ktorVersion")
+        val androidMain by getting {
+            dependencies {
+                implementation("io.ktor:ktor-client-android:$ktorVersion")
 
             }
         }
@@ -43,8 +43,8 @@ kotlin {
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
-            dependencies{
-                implementation ("io.ktor:ktor-client-ios:$ktorVersion")
+            dependencies {
+                implementation("io.ktor:ktor-client-ios:$ktorVersion")
 
             }
         }

@@ -5,23 +5,27 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mykmmapp.MoviesInfo
-import com.example.mykmmapp.repo.BooksRepo
+import com.example.mykmmapp.Usecase.MoviesUsecase
+import com.example.mykmmapp.repo.MoviesRepo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class MainViewModel: ViewModel() {
-     val movieRepo:BooksRepo= BooksRepo()
-    private val _movies=MutableLiveData<List<MoviesInfo>>()
-    val movie:LiveData<List<MoviesInfo>> =_movies
-    init{
-        getBooks()
+class MainViewModel : ViewModel() {
+    val moviesUsecase: MoviesUsecase = MoviesUsecase()
+
+    private val _movies = MutableLiveData<List<MoviesInfo>>()
+    val movies: LiveData<List<MoviesInfo>> = _movies
+
+    init {
+        getMovies()
     }
-    private fun getBooks(){
-        viewModelScope.launch (Dispatchers.IO){
-val result=movieRepo.getBooksList()
-            withContext(Dispatchers.Main){
-                _movies.value=result.movies
+
+    private fun getMovies() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val result = moviesUsecase.getMoviesList();
+            withContext(Dispatchers.Main) {
+                _movies.value = result.movies
             }
         }
     }

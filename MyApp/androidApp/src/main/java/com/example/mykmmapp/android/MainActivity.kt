@@ -7,6 +7,7 @@ import com.example.mykmmapp.Greeting
 import android.widget.TextView
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -18,8 +19,11 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
+import coil.annotation.ExperimentalCoilApi
+import coil.compose.rememberImagePainter
 
 import com.example.mykmmapp.MoviesInfo
 import com.example.mykmmapp.repo.BooksRepo
@@ -35,7 +39,7 @@ class MainActivity : AppCompatActivity() {
 
     setContent {
         MaterialTheme {
-            val state = viewModel.movie.observeAsState(emptyList())
+            val state = viewModel.movie.observeAsState(initial=emptyList())
             LazyColumn {
                 items(items=state.value) { item ->
                     rowItem(item)
@@ -48,19 +52,31 @@ class MainActivity : AppCompatActivity() {
 
 
 }
-
+@OptIn(ExperimentalCoilApi::class)
     @Composable
     fun rowItem(item: MoviesInfo) {
         Column(
-            Modifier.background(Color.White).fillMaxWidth().wrapContentHeight().padding(bottom = 8.dp)
+            modifier=Modifier.background(Color.White).fillMaxWidth().wrapContentHeight().padding(bottom = 8.dp)
 
         ){
-            Row(Modifier.fillMaxWidth().padding(horizontal = 8.dp), horizontalArrangement = Arrangement.SpaceBetween){
+
+            val image=rememberImagePainter(imageBaseURL)
+            Image(
+                modifier=Modifier.fillMaxWidth()
+                    .height(150.dp),
+                painter=image,
+                contentDescription="placeholder image",
+                contentScale= ContentScale.Crop)
+
+
+
+        }
+      Row(modifier=Modifier.fillMaxWidth().padding(horizontal = 8.dp), horizontalArrangement = Arrangement.SpaceBetween){
 
                 Text(item.display_title, Modifier.padding(top=20.dp))
                 Text(item.mpaa_rating, Modifier.padding(top=20.dp))
 
             }
         }
-    }
+
 }

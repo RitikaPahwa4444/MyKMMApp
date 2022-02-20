@@ -38,6 +38,11 @@ dependencies {
     // Foundation (Border, Background, Box, Image, Scroll, shapes, animations, etc.)
     implementation("androidx.compose.foundation:foundation:1.0.5")
     // Material Design
+    val compose_version = "1.1.0"
+    implementation ("androidx.compose.ui:ui:$compose_version")
+    implementation ("androidx.compose.ui:ui-tooling:$compose_version")
+    implementation ("androidx.compose.material:material:$compose_version")
+    implementation ("androidx.compose.material:material-ripple:$compose_version")
     implementation("androidx.compose.material:material:1.0.5")
     // Material design icons
     implementation("androidx.compose.material:material-icons-core:1.0.5")
@@ -57,7 +62,8 @@ implementation("androidx.activity:activity-compose:1.3.0-alpha07")
         implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version")
         // LiveData
     val activity_version = "1.4.0"
-
+    implementation("io.coil-kt:coil-compose:1.4.0")
+    implementation("io.coil-kt:coil:1.3.1")
     // Kotlin
     implementation("androidx.activity:activity-ktx:$activity_version")
             //   implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
